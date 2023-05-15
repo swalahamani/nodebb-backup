@@ -4,13 +4,45 @@
 	"author": "Muhammad Swalah A A",
 	"license": "MIT",
 	"packageManager": "yarn@3.5.0",
-	"volta": {
-		"node": "18.16.0",
-		"yarn": "3.5.1"
-	},
 	"version": "0.1.0",
 	"main": "App.ts",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"postinstall": "husky install",
+		"check-types": "tsc --noemit",
+		"eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
+		"lint": "yarn eslint && yarn check-types",
+		"format": "prettier --check \"src/**/*.ts\"",
+		"build": "rimraf ./build && tsc --project tsconfig.json && tsconfig-replace-paths -p tsconfig.json -s ./ -o ./build",
+		"start:production": "yarn build && node ./build/src/app.js",
+		"start": "ts-node -r tsconfig-paths/register --transpile-only ./src/App.ts"
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx}": [
+			"prettier --write",
+			"eslint --fix"
+		]
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^17.6.3",
+		"@commitlint/config-conventional": "^17.6.3",
+		"@types/node": "^20.1.4",
+		"@typescript-eslint/eslint-plugin": "^5.59.6",
+		"@typescript-eslint/parser": "^5.59.6",
+		"copyfiles": "^2.4.1",
+		"eslint": "^8.40.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-prettier": "^8.8.0",
+		"eslint-import-resolver-typescript": "^3.5.5",
+		"eslint-plugin-import": "^2.27.5",
+		"eslint-plugin-prettier": "^4.2.1",
+		"husky": "^8.0.3",
+		"lint-staged": "^13.2.2",
+		"prettier": "^2.8.8",
+		"rimraf": "^5.0.0",
+		"ts-node": "^10.9.1",
+		"tsconfig-paths": "^4.2.0",
+		"tsconfig-replace-paths": "^0.0.14",
+		"typescript": "^5.0.4"
 	}
 }
