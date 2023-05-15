@@ -14,7 +14,8 @@
 		"lint": "yarn eslint && yarn check-types",
 		"format": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
 		"build": "rimraf ./build && tsc --project tsconfig.json && tsconfig-replace-paths -p tsconfig.json -s ./ -o ./build",
-		"start:production": "yarn build && node ./build/src/app.js"
+		"start:production": "yarn build && node ./build/src/app.js",
+		"start": "ts-node -r tsconfig-paths/register --transpile-only ./src/App.ts"
 	},
 	"lint-staged": {
 		"*.{js,jsx,ts,tsx}": [
