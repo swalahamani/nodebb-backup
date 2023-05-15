@@ -1,8 +1,8 @@
 {
-  "name": "nodebb-backup",
-  "packageManager": "yarn@3.5.0",
-  "volta": {
-    "node": "18.16.0",
-    "yarn": "3.5.1"
-  }
+	"name": "nodebb-backup",
+	"packageManager": "yarn@3.5.0",
+	"volta": {
+		"node": "18.16.0",
+		"yarn": "3.5.1"
+	}
 }
